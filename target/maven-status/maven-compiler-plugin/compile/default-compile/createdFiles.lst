@@ -1,0 +1,5 @@
+com\crud\test\crudjsf\model\User.class
+com\crud\test\crudjsf\HelloWorld.class
+com\crud\test\crudjsf\repository\DBConnection.class
+com\crud\test\crudjsf\service\UserDAO.class
+com\crud\test\crudjsf\controller\UserBean.class
