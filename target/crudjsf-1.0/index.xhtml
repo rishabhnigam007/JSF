@@ -32,29 +32,45 @@
 
                 <p:column headerText="Actions">
                     <p:commandButton value="Edit" action="#{userBean.editUser(user)}" icon="pi pi-pencil" />
-                    <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" icon="pi pi-trash" />
+                    <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
                 </p:column>
 
             </p:dataTable>
             <p:commandButton value="Add User" action="#{userBean.showAddUserDialog}" icon="pi pi-plus" />
 
-            <!--dialog box-->
-            <p:dialog header="Add User" widgetVar="addUserDialog" modal="true" resizable="false">
-                <h:form>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel for="name" value="Name:" />
-                        <p:inputText id="name" value="#{userBean.newUser.name}" required="true" />
-
-                        <p:outputLabel for="city" value="City:" />
-                        <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
-                    </p:panelGrid>
-                    <p:commandButton value="Save" action="#{userBean.addUser}" />
-                    <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" immediate="true" />
-
-                </h:form>
-            </p:dialog>
-
         </h:form>
+        <!--dialog box of add user-->
+        <p:dialog header="Add User" id="addUserDialog" widgetVar="addUserDialog" modal="true" resizable="false">
+            <h:form>
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel for="name" value="ID" />
+                    <p:inputText id="id" value="#{userBean.newUser.id}" required="true" />
+
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{userBean.newUser.name}" required="true" />
+
+                    <p:outputLabel for="city" value="City:" />
+                    <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
+                </p:panelGrid>
+                <p:commandButton value="Save" action="#{userBean.addUser}" onclick="window.location.reload()" />
+                <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" immediate="true" />
+
+            </h:form>
+        </p:dialog>
+
+        <!--dialog box of edit user-->
+        <p:dialog id="editUserDialog" widgetVar="editUserDialog" modal="true" resizable="false">
+            <p:panelGrid columns="2">
+                <p:outputLabel for="name" value="Name:" />
+                <p:inputText id="name" value="#{userBean.selectedUser.name}" required="true" />
+
+                <p:outputLabel for="city" value="City:" />
+                <p:inputText id="city" value="#{userBean.selectedUser.city}" required="true" />
+            </p:panelGrid>
+            <p:commandButton value="Save" action="#{userBean.updateUser}" />
+            <p:commandButton value="Cancel" action="#{userBean.cancelEditUser}" immediate="true" />
+        </p:dialog>
 
     </h:body>
 </html>

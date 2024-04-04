@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>Add User</title>
-</h:head>
-<h:body>
-    <h1>Add User</h1>
-    <h:form>
-        <p:panelGrid columns="2">
-            <p:outputLabel for="name" value="Name:" />
-            <p:inputText id="name" value="#{userBean.newUser.name}" required="true" />
-            
-            <p:outputLabel for="city" value="City:" />
-            <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
-        </p:panelGrid>
-        <p:commandButton value="Save" action="#{userBean.addUser}" />
-        <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" immediate="true" />
-    </h:form>
-</h:body>
+    <h:head>
+        <title>Add User</title>
+    </h:head>
+    <h:body>
+        <h1>Add User</h1>
+        <h:form>
+            <p:panel header="Add User">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{userBean.newUser.name}" required="true" />
+
+                    <p:outputLabel for="city" value="City:" />
+                    <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
+                </h:panelGrid>
+                <p:spacer/>
+                <br/>
+                <p:commandButton value="Save" action="#{userBean.addUser}" />
+                <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" />
+            </p:panel>
+        </h:form>
+    </h:body>
 </html>
