@@ -34,9 +34,10 @@ public class UserDAO {
     // CRUD operations: insert, update, delete
 // Method to insert a new user into the database
     public boolean insertUser(User user) {
-        try (Connection connection = DBConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO user (name, city) VALUES (?, ?)")) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getCity());
+        try (Connection connection = DBConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO user (id, name, city) VALUES (?, ?, ?)")) {
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getCity());
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
@@ -50,7 +51,9 @@ public class UserDAO {
         try (Connection connection = DBConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET name=?, city=? WHERE id=?")) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getCity());
+
             preparedStatement.setInt(3, user.getId());
+
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

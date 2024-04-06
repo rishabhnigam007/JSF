@@ -6,41 +6,26 @@
         <title>Delete User</title>
     </h:head>
     <h:body>
-        <h1>Are you sure you want to delete this user?</h1>
-        <!--        <h:form>
-                    <p:outputLabel value="ID: " />
-                    <h:outputText value="#{userBean.selectedUser.id}" />
-                    <br />
-                    <p:outputLabel value="Name: " />
-                    <h:outputText value="#{userBean.selectedUser.name}" />
-                    <br />
-                    <p:outputLabel value="City: " />
-                    <h:outputText value="#{userBean.selectedUser.city}" />
-                    <br />
-                    <p:commandButton value="Yes, Delete" action="#{userBean.deleteUser}" />
-                    <p:commandButton value="No, Cancel" action="#{userBean.cancelDeleteUser}" immediate="true" />
-                </h:form>-->
+        
+        <h:form>
+            <p:dataTable var="user" value="#{userBean.allUsers}">
+                <p:column headerText="ID">
+                    <h:outputText value="#{user.id}" />
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{user.name}" />
+                </p:column>
+                <p:column headerText="City">
+                    <h:outputText value="#{user.city}" />
+                </p:column>
 
-<!--        <p:dataTable var="user" value="#{userBean.allUsers}" emptyMessage="No users found">-->
+                <p:column headerText="Actions">
+                    <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
+                </p:column>
 
-        <!--        <h:form>
-                    <p:dataTable var="user" value="#{userBean.allUsers}">
-                        <p:column headerText="ID">
-                            <h:outputText value="#{user.id}" />
-                        </p:column>
-                        <p:column headerText="Name">
-                            <h:outputText value="#{user.name}" />
-                        </p:column>
-                        <p:column headerText="City">
-                            <h:outputText value="#{user.city}" />
-                        </p:column>
-        
-                        <p:column headerText="Actions">
-                            <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" icon="pi pi-trash" />
-                        </p:column>
-        
-                    </p:dataTable>
-        
-                </h:form>-->
+            </p:dataTable>
+
+        </h:form>
+
     </h:body>
 </html>

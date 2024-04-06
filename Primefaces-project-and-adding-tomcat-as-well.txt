@@ -1,0 +1,199 @@
+<-----  Steps to create JSF and Primefaces project ------ >
+
+Steps: 
+
+1.) eclipse or netbeans first go to create new project option 
+2.) choose dynamic web project0( through java maven) to create new project
+3.) then open pom.xml file and this dependency to enable project as a JSF/Primefaces project
+
+Dependencies are : 
+
+<dependencies>
+        
+        <!-- PrimeFaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>11.0.0</version>
+        </dependency>
+        
+        <!-- JSF -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.1.11</version>
+        </dependency>
+        
+        <!-- JSF IMPLEMENTATION (MOJARRA) -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.2.20</version>
+        </dependency>
+        
+        <!-- JSF -->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.3</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- SERVLET API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- JSP API -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- EL (EXPRESSION LANGUAGE) API -->
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>        
+        
+        <!-- MYSQL DB DEPENDENCY -->
+        <!--         https://mvnrepository.com/artifact/com.mysql/mysql-connector-j 
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
+        
+        <!-- JAVA DEPENDENCY FOR DEPENDENCY INJECTION LIKE @Inject @PostConstruct etc annotation --> 
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakartaee}</version>
+            <scope>provided</scope>
+        </dependency>
+</dependencies>
+
+4.) now if you want to create xhtml page (index.xhtml) so go to web pages folder
+5.) there select this folder and right click and make jsf page with .xhtml extension
+6.) for creating java class go to source packages folder and there you can create java classes
+7.)set web.xml file which is present in inside folder web pages/web-inf/web.xml and configure it like : 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <!-- Map these files with JSF -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+</web-app>
+
+8.) add tomcat to the project choose add server option in project menu or server menu
+9.) add this username and password in your tomcat-users file so that it can configure
+
+<user password="Tomcat!323" roles="manager-gui, admin-gui, manager-script, admin-script,admin" username="tomcat"/>
+
+or if it is asking encrypted password (username and password same for both)
+
+<user username="tomcat" password="ece7470ebe563c93$1000$5ed817ac45bf7369f1a7311e43f08475dbc26f86" roles="manager-gui, admin-gui, manager-script, admin-script"/>
+
+tomcat-users file present in tomcat/conf/tomcat-users.xml 
+
+10.) set maven also in environment setting
+
+file : index.xhtml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+    </h:head>
+    <h:body>
+        <h1>Hello World Prime Faces</h1>
+        <h:form>
+            <h:inputTextarea id="editor" value="#{beanName.method/variable}" style="width: 100%; height: 100px;" />
+            <p:commandButton value="Submit" onclick="window.location.reload()" />
+        </h:form>
+	</h:body>
+</html>
+
+value="#{helloWorld.home}"
+
+file : HelloWorld.java
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+@ManagedBean
+@ViewedScoped
+class HelloWorld
+{
+private String home(){
+	return "hello";
+}
+}
+
+11.) build with dependency
+12.) clean and build
+13.) then run in server

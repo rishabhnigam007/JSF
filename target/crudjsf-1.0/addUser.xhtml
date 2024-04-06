@@ -8,19 +8,28 @@
     <h:body>
         <h1>Add User</h1>
         <h:form>
-            <p:panel header="Add User">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <p:outputLabel for="name" value="Name:" />
-                    <p:inputText id="name" value="#{userBean.newUser.name}" required="true" />
 
-                    <p:outputLabel for="city" value="City:" />
-                    <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
-                </h:panelGrid>
-                <p:spacer/>
-                <br/>
-                <p:commandButton value="Save" action="#{userBean.addUser}" />
-                <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" />
-            </p:panel>
+            <h:form>
+                <p:panel header="Add User">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <p:outputLabel for="name" value="ID" />
+                        <p:inputText id="id" value="#{userBean.newUser.id}" required="true" />
+
+                        <p:outputLabel for="name" value="Name:" />
+                        <p:inputText id="name" value="#{userBean.newUser.name}" required="true" />
+
+                        <p:outputLabel for="city" value="City:" />
+                        <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
+                    </h:panelGrid>
+                    <p:spacer/><p:spacer/>
+                    <p:commandButton value="Save" action="#{userBean.addUser}" onclick="window.location.reload()" />
+                    <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" immediate="true" />
+
+                </p:panel>
+
+            </h:form>
+
         </h:form>
     </h:body>
 </html>

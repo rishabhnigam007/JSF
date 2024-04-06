@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.crud.test.crudjsf.controller;
 
 import com.crud.test.crudjsf.model.User;
@@ -60,12 +56,19 @@ public class UserBean implements Serializable {
 
     public void editUser(User user) {
         selectedUser = user;
+        System.out.println("Selected User ID : " + selectedUser.getId());
         PrimeFaces.current().executeScript("PF('editUserDialog').show()");
     }
 
     public void updateUser() {
-        userDAO.updateUser(selectedUser);
-        PrimeFaces.current().executeScript("PF('editUserDialog').hide()");
+        boolean updated = userDAO.updateUser(selectedUser);
+        if (updated) {
+            PrimeFaces.current().executeScript("PF('editUserDialog').hide()");
+            System.out.println("User updated successfully."); // Add logging for debugging
+        } else {
+            // Handle update failure
+            System.out.println("User update failed."); // Add logging for debugging
+        }
     }
 
     public void deleteUser(User user) {
@@ -96,10 +99,10 @@ public class UserBean implements Serializable {
         // Navigate to addUser.xhtml
         return "addUser";
     }
-    
+
     public String navigateToDeleteUser() {
         // Navigate to deleteUser.xhtml
         return "deleteUser";
     }
-    
+
 }
