@@ -15,8 +15,9 @@
                 <p:outputLabel for="city" value="City:" />
                 <p:inputText id="city" value="#{userBean.selectedUser.city}" required="true" />
             </p:panelGrid>
-            <p:commandButton value="Save" action="#{userBean.updateUser}" />
-            <p:commandButton value="Cancel" action="#{userBean.cancelEditUser}" immediate="true" />
+            <p:spacer/>
+            <p:spacer/>
+            <h1> Home Page <p:commandButton value="Click here for home page" onclick="window.location.href = 'index.xhtml'" /></h1>
         </h:form>
     </h:body>
 </html>

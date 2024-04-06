@@ -51,9 +51,7 @@ public class UserDAO {
         try (Connection connection = DBConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET name=?, city=? WHERE id=?")) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getCity());
-
             preparedStatement.setInt(3, user.getId());
-
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

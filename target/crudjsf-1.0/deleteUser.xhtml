@@ -6,25 +6,31 @@
         <title>Delete User</title>
     </h:head>
     <h:body>
-        
+
         <h:form>
-            <p:dataTable var="user" value="#{userBean.allUsers}">
-                <p:column headerText="ID">
-                    <h:outputText value="#{user.id}" />
-                </p:column>
-                <p:column headerText="Name">
-                    <h:outputText value="#{user.name}" />
-                </p:column>
-                <p:column headerText="City">
-                    <h:outputText value="#{user.city}" />
-                </p:column>
+            <p:panel header="Details of All User for deletion" style="align-content: center">
+                <p:panelGrid columns="2">
+                    <p:dataTable var="user" value="#{userBean.allUsers}">
+                        <p:column headerText="ID">
+                            <h:outputText value="#{user.id}" />
+                        </p:column>
+                        <p:column headerText="Name">
+                            <h:outputText value="#{user.name}" />
+                        </p:column>
+                        <p:column headerText="City">
+                            <h:outputText value="#{user.city}" />
+                        </p:column>
 
-                <p:column headerText="Actions">
-                    <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
-                </p:column>
-
-            </p:dataTable>
-
+                        <p:column headerText="Actions">
+                            <p:spacer/>
+                            <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
+            </p:panel>
+            <p:spacer/>
+            <p:spacer/>
+            <h1> Home Page <p:commandButton value="Click here for home page" onclick="window.location.href = 'index.xhtml'" /></h1>
         </h:form>
 
     </h:body>

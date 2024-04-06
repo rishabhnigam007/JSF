@@ -95,6 +95,10 @@ public class UserBean implements Serializable {
         PrimeFaces.current().executeScript("PF('addUserDialog').show()");
     }
 
+    public void showdeleteUserDialog() {
+        PrimeFaces.current().executeScript("PF('deleteUserDialog').show()");
+    }
+    
     public String navigateToAddUser() {
         // Navigate to addUser.xhtml
         return "addUser";

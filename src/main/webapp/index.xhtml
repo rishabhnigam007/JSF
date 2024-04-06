@@ -10,35 +10,36 @@
     <h:head>
     </h:head>
     <h:body>
-        <h1>Hello World Prime Faces</h1>
-        <h:form>
-            <h:inputTextarea id="editor" style="width: 100%; height: 100px;" />
-            <p:commandButton value="Submit" onclick="window.location.reload()" />
-        </h:form>
-
-        <hr/>
 
         <h:form>
-            <p:dataTable var="user" value="#{userBean.allUsers}">
-                <p:column headerText="ID">
-                    <h:outputText value="#{user.id}" />
-                </p:column>
-                <p:column headerText="Name">
-                    <h:outputText value="#{user.name}" />
-                </p:column>
-                <p:column headerText="City">
-                    <h:outputText value="#{user.city}" />
-                </p:column>
+            <p:panel header="Details of all Users" style="align-content: center">
+                <p:panelGrid columns="2">
+                    <p:dataTable var="user" value="#{userBean.allUsers}">
+                        <p:column headerText="ID">
+                            <h:outputText value="#{user.id}" />
+                        </p:column>
+                        <p:column headerText="Name">
+                            <h:outputText value="#{user.name}" />
+                        </p:column>
+                        <p:column headerText="City">
+                            <h:outputText value="#{user.city}" />
+                        </p:column>
 
-                <p:column headerText="Actions">
-                    <p:commandButton value="Edit" action="#{userBean.editUser(user)}" icon="pi pi-pencil" />
-                    <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
-                </p:column>
+                        <p:column headerText="Actions">
+                            <p:commandButton value="Edit" action="#{userBean.editUser(user)}" icon="pi pi-pencil" />
+                            <p:spacer/>
+                            <p:spacer/>
+                            <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
+                        </p:column>
 
-            </p:dataTable>
-            <p:commandButton value="Add User" action="#{userBean.showAddUserDialog}" icon="pi pi-plus" />
+                    </p:dataTable>
+                </p:panelGrid>
+                <br/>
+                <p:commandButton value="Add User" action="#{userBean.showAddUserDialog}" style="align-items: center" icon="pi pi-plus" />
+            </p:panel>            
 
         </h:form>
+
         <!--dialog box of add user-->
         <p:dialog header="Add User" id="addUserDialog" widgetVar="addUserDialog" modal="true" resizable="false">
             <h:form>
@@ -60,7 +61,7 @@
         </p:dialog>
 
         <!--dialog box of edit user-->
-        <p:dialog id="editUserDialog" widgetVar="editUserDialog" modal="true" resizable="false">
+        <p:dialog header="Edit User" id="editUserDialog" widgetVar="editUserDialog" modal="true" resizable="false">
             <p:panelGrid columns="2">
                 <p:outputLabel for="name" value="Name:" />
                 <p:inputText id="name" value="#{userBean.selectedUser.name}" required="true" />

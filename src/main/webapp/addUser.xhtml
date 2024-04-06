@@ -6,14 +6,14 @@
         <title>Add User</title>
     </h:head>
     <h:body>
-        <h1>Add User</h1>
+
         <h:form>
 
             <h:form>
                 <p:panel header="Add User">
                     <h:panelGrid columns="2" cellpadding="5">
 
-                        <p:outputLabel for="name" value="ID" />
+                        <p:outputLabel for="id" value="ID" />
                         <p:inputText id="id" value="#{userBean.newUser.id}" required="true" />
 
                         <p:outputLabel for="name" value="Name:" />
@@ -22,11 +22,12 @@
                         <p:outputLabel for="city" value="City:" />
                         <p:inputText id="city" value="#{userBean.newUser.city}" required="true" />
                     </h:panelGrid>
-                    <p:spacer/><p:spacer/>
-                    <p:commandButton value="Save" action="#{userBean.addUser}" onclick="window.location.reload()" />
-                    <p:commandButton value="Cancel" action="#{userBean.cancelAddUser}" immediate="true" />
-
+                    <p:commandButton value="Add User" action="#{userBean.addUser}" onclick="window.location.reload()" />
+                    
                 </p:panel>
+                
+                <p:spacer/>
+                <h1> Home Page <p:commandButton value="Click here for home page" onclick="window.location.href = 'index.xhtml'" /></h1>
 
             </h:form>
 
