@@ -20,6 +20,32 @@ public class UserBean implements Serializable {
     private User selectedUser;
     private User newUser;
     private UserDAO userDAO;
+    
+    private boolean visible;
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+    
+    public void checkVisible() {
+        visible = !visible;
+        
+        // This is for ajax calling through java code when method is called then it will called
+        
+        PrimeFaces.current().ajax().update("reloaduser");
+    }
 
     public UserBean() {
         this.userDAO = new UserDAO();
