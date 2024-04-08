@@ -26,7 +26,7 @@
                         </p:column>
 
                         <p:column headerText="Actions">
-                            <p:commandButton value="Edit" action="#{userBean.editUser(user)}" icon="pi pi-pencil" />
+                            <p:commandButton value="Edit" action="#{userBean.editUser(user)}" icon="pi pi-pencil" update="editUserDialog"/>
                             <p:spacer/>
                             <p:spacer/>
                             <p:commandButton value="Delete" action="#{userBean.deleteUser(user)}" onclick="window.location.reload()" icon="pi pi-trash" />
@@ -62,15 +62,19 @@
 
         <!--dialog box of edit user-->
         <p:dialog header="Edit User" id="editUserDialog" widgetVar="editUserDialog" modal="true" resizable="false">
-            <p:panelGrid columns="2">
-                <p:outputLabel for="name" value="Name:" />
-                <p:inputText id="name" value="#{userBean.selectedUser.name}" required="true" />
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{userBean.selectedUser.name}" required="true" />
 
-                <p:outputLabel for="city" value="City:" />
-                <p:inputText id="city" value="#{userBean.selectedUser.city}" required="true" />
-            </p:panelGrid>
-            <p:commandButton value="Save" action="#{userBean.updateUser}" />
-            <p:commandButton value="Cancel" action="#{userBean.cancelEditUser}" immediate="true" />
+                    <p:outputLabel for="city" value="City:" />
+                    <p:inputText id="city" value="#{userBean.selectedUser.city}" required="true" />
+                </p:panelGrid>
+                <p:commandButton value="Save" action="#{userBean.updateUser}" onclick="window.location.reload()"/>
+                <p:spacer/>
+                <p:spacer/>
+                <p:commandButton value="Cancel" action="#{userBean.cancelEditUser}" immediate="true" />
+            </h:form>
         </p:dialog>
 
     </h:body>
